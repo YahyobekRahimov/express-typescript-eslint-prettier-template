@@ -1,4 +1,4 @@
-import { sum } from "#utils/sum.js";
+import { sum } from "../utils/sum.js";
 import { describe, expect, it } from "vitest";
 
 describe("sum function", () => {
