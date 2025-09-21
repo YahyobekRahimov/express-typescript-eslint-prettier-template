@@ -6,3 +6,8 @@ export interface IUser extends mongoose.Document {
   refreshToken?: string;
   matchPassword(password: string): Promise<boolean>;
 }
+
+export interface CreateUserDto {
+  username: string;
+  password: string;
+}
