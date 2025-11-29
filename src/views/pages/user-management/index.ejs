@@ -46,8 +46,18 @@
                   <%= new Date(u.created_at).toLocaleDateString() %>
                 </td>
                 <td>
-                  <button class="btn btn-sm btn-edit">Edit</button>
-                  <button class="btn btn-sm btn-delete">
+                  <button
+                    class="btn btn-sm btn-edit"
+                    data-id="<%= u.id %>"
+                    data-username="<%= u.username %>"
+                  >
+                    Edit
+                  </button>
+                  <button
+                    class="btn btn-sm btn-delete"
+                    data-id="<%= u.id %>"
+                    data-username="<%= u.username %>"
+                  >
                     Delete
                   </button>
                 </td>
@@ -103,6 +113,55 @@
         </form>
       </div>
     </div>
+
+    <!-- Update User Drawer -->
+    <div id="updateUserDrawer" class="drawer">
+      <div class="drawer-content">
+        <div class="drawer-header">
+          <h2>Update Staff Member</h2>
+          <span class="drawer-close">&times;</span>
+        </div>
+        <form id="updateUserForm">
+          <div class="form-group">
+            <label for="updateUsername">Username</label>
+            <input
+              type="text"
+              id="updateUsername"
+              name="updateUsername"
+              required
+              placeholder="Enter username"
+              disabled
+            />
+          </div>
+          <div class="form-group">
+            <label for="updatePassword"
+              >New Password (Leave blank to keep current)</label
+            >
+            <input
+              type="password"
+              id="updatePassword"
+              name="updatePassword"
+              placeholder="Enter new password"
+            />
+          </div>
+          <div class="form-buttons">
+            <button type="submit" class="btn-submit">
+              Update User
+            </button>
+            <button
+              type="button"
+              class="btn-cancel"
+              id="closeDrawerBtn"
+            >
+              Cancel
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Drawer Overlay -->
+    <div id="drawerOverlay" class="drawer-overlay"></div>
 
     <script src="/js/user-management.js"></script>
   </body>

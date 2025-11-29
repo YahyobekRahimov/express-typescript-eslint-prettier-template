@@ -3,8 +3,14 @@ import express from "express";
 import rateLimit from "express-rate-limit";
 import helmet from "helmet";
 import morgan from "morgan";
-import userRoutes from "./routes/users.js";
+import authRoutes from "./routes/auth.js";
 import dashboardRoutes from "./routes/dashboard.js";
+import userManagementRoutes from "./routes/user-management.js";
+import delegatesRoutes from "./routes/delegates.js";
+import startupsRoutes from "./routes/startups.js";
+import recommendationsRoutes from "./routes/recommendations.js";
+import scanLogRoutes from "./routes/scan-log.js";
+import analyticsRoutes from "./routes/analytics.js";
 import { corsConfig } from "./middlewares/cors.js";
 import { verifyJWT } from "./middlewares/auth.js";
 import path from "path";
@@ -42,8 +48,14 @@ app.use(morgan("dev"));
 app.use(verifyJWT);
 
 // Routes
-app.use("/auth", userRoutes);
+app.use("/auth", authRoutes);
 app.use("/dashboard", dashboardRoutes);
+app.use("/dashboard/users", userManagementRoutes);
+app.use("/api/delegates", delegatesRoutes);
+app.use("/api/startups", startupsRoutes);
+app.use("/api/recommendations", recommendationsRoutes);
+app.use("/api/scan-log", scanLogRoutes);
+app.use("/api/analytics", analyticsRoutes);
 
 app.get("/", (req, res) => {
   if (!req.user) {

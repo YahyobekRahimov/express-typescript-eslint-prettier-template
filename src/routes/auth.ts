@@ -1,7 +1,7 @@
 import { Router } from "express";
 import jwt from "jsonwebtoken";
 import bcryptjs from "bcryptjs";
-import { pool } from "../db.js";
+import prisma from "../lib/prisma.js";
 import { JWT_SECRET } from "../config/config.js";
 
 const router = Router();
@@ -23,21 +23,22 @@ router.post("/signin", async (req, res) => {
   }
 
   try {
-    const result = await pool.query(
-      "SELECT id, username, role, password FROM users WHERE username = $1",
-      [username],
-    );
+    const user = await prisma.users.findUnique({
+      where: { username },
+      select: {
+        id: true,
+        username: true,
+        role: true,
+        password: true,
+      },
+    });
 
-    if (result.rows.length === 0) {
+    if (!user) {
       return res.render("pages/login/index", {
         error: "Invalid credentials",
       });
     }
 
-    const user = result.rows[0];
-    console.log("Fetched user from DB:", user);
-    console.log("username", username);
-    console.log("password:", password);
     // Compare password with hashed password
     const isPasswordValid = await bcryptjs.compare(password, user.password);
 
