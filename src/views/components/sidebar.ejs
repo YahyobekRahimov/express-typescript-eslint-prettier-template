@@ -1,0 +1,17 @@
+<div class="sidebar">
+  <a
+    href="/dashboard"
+    class="sidebar-item <% if (currentPage === 'dashboard') { %>active<% } %>"
+    >Home</a
+  >
+  <% if (isAdmin) { %>
+  <a
+    href="/dashboard/users"
+    class="sidebar-item <% if (currentPage === 'users') { %>active<% } %>"
+    >User Management</a
+  >
+  <% } %>
+  <!-- TODO: Add more staff pages -->
+  <!-- <a href="/dashboard/page1" class="sidebar-item">Page 1</a> -->
+  <!-- <a href="/dashboard/page2" class="sidebar-item">Page 2</a> -->
+</div>

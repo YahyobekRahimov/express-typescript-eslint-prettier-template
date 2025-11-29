@@ -7,9 +7,20 @@ import userRoutes from "./routes/users.js";
 import dashboardRoutes from "./routes/dashboard.js";
 import { corsConfig } from "./middlewares/cors.js";
 import { verifyJWT } from "./middlewares/auth.js";
+import path from "path";
+import { fileURLToPath } from "url";
 // import { errorHandler } from "./middlewares/error-handler.js";
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 const app = express();
+
+// Serve static files from the 'public' directory
+app.use(express.static(path.join(__dirname, "public")));
+
+// Serve JS files from views directory
+app.use("/js", express.static(path.join(__dirname, "../src/views/js")));
 
 app.set("view engine", "ejs");
 app.set("views", "src/views");
