@@ -13,9 +13,9 @@ import scanLogRoutes from "./routes/scan-log.js";
 import analyticsRoutes from "./routes/analytics.js";
 import { corsConfig } from "./middlewares/cors.js";
 import { verifyJWT } from "./middlewares/auth.js";
+import { errorHandler } from "./middlewares/error-handler.js";
 import path from "path";
 import { fileURLToPath } from "url";
-// import { errorHandler } from "./middlewares/error-handler.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -64,6 +64,7 @@ app.get("/", (req, res) => {
   return res.redirect("/dashboard");
 });
 
-// app.use(errorHandler);
+// Error handling middleware (must be last)
+app.use(errorHandler);
 
 export default app;
