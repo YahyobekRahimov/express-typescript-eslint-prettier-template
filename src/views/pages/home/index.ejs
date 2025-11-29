@@ -7,14 +7,14 @@
       content="width=device-width, initial-scale=1.0"
     />
     <title>Dashboard</title>
-    <%- include('../css/base.ejs') %> <%-
-    include('../css/dashboard.ejs') %>
+    <%- include('../../css/base.ejs') %> <%-
+    include('./dashboard-styles.ejs') %>
   </head>
   <body>
-    <%- include('../components/navbar.ejs') %>
+    <%- include('../../components/navbar.ejs') %>
 
     <div class="container">
-      <%- include('../components/sidebar.ejs', { currentPage:
+      <%- include('../../components/sidebar.ejs', { currentPage:
       'dashboard', isAdmin }) %>
 
       <div class="main-content">

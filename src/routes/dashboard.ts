@@ -8,7 +8,7 @@ const router = Router();
 // Dashboard main page
 router.get("/", isAuthenticated, (req, res) => {
   const user = req.user;
-  res.render("dashboard/index", {
+  res.render("pages/home/index", {
     user,
     isAdmin: user?.role === "admin",
     isStaff: user?.role === "staff",
@@ -21,14 +21,14 @@ router.get("/users", isAuthenticated, isAdmin, async (req, res) => {
     const result = await pool.query(
       "SELECT id, username, role, created_at FROM users WHERE role = 'staff' ORDER BY created_at DESC",
     );
-    res.render("dashboard/user-management", {
+    res.render("pages/user-management/index", {
       user: req.user,
       isAdmin: true,
       users: result.rows,
     });
   } catch (error) {
     console.error("Error fetching users:", error);
-    res.render("dashboard/user-management", {
+    res.render("pages/user-management/index", {
       user: req.user,
       isAdmin: true,
       users: [],

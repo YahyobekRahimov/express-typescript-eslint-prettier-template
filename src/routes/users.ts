@@ -8,7 +8,7 @@ const router = Router();
 
 // Sign-in page (GET)
 router.get("/signin", (req, res) => {
-  res.render("signin", { error: null });
+  res.render("pages/login/index", { error: null });
 });
 
 // Sign-in handler (POST)
@@ -17,7 +17,7 @@ router.post("/signin", async (req, res) => {
 
   // Validate input
   if (!username || !password) {
-    return res.render("signin", {
+    return res.render("pages/login/index", {
       error: "Username and password are required",
     });
   }
@@ -29,7 +29,9 @@ router.post("/signin", async (req, res) => {
     );
 
     if (result.rows.length === 0) {
-      return res.render("signin", { error: "Invalid credentials" });
+      return res.render("pages/login/index", {
+        error: "Invalid credentials",
+      });
     }
 
     const user = result.rows[0];
@@ -40,7 +42,7 @@ router.post("/signin", async (req, res) => {
     const isPasswordValid = await bcryptjs.compare(password, user.password);
 
     if (!isPasswordValid) {
-      return res.render("signin", {
+      return res.render("pages/login/index", {
         error: "Invalid credentials",
       });
     }
@@ -64,7 +66,7 @@ router.post("/signin", async (req, res) => {
     return res.redirect("/dashboard");
   } catch (error) {
     console.error("Error during sign-in:", error);
-    return res.render("signin", {
+    return res.render("pages/login/index", {
       error: "An error occurred. Please try again.",
     });
   }

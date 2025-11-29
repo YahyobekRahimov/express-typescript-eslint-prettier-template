@@ -7,15 +7,15 @@
       content="width=device-width, initial-scale=1.0"
     />
     <title>User Management</title>
-    <%- include('../css/base.ejs') %> <%-
-    include('../css/user-management.ejs') %>
+    <%- include('../../css/base.ejs') %> <%-
+    include('./user-management-styles.ejs') %>
   </head>
   <body>
-    <%- include('../components/navbar.ejs') %>
+    <%- include('../../components/navbar.ejs') %>
 
     <div class="container">
-      <%- include('../components/sidebar.ejs', { currentPage: 'users',
-      isAdmin }) %>
+      <%- include('../../components/sidebar.ejs', { currentPage:
+      'users', isAdmin }) %>
 
       <div class="main-content">
         <div class="users-table-container">
