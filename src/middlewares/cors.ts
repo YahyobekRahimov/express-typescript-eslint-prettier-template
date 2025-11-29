@@ -1,5 +1,13 @@
 import cors from "cors";
 
+// Configure allowed origins
+const allowedOrigins = [
+  "http://localhost:5173", // Example: Your local frontend
+  "http://localhost:5174", // Example: Your local frontend
+  "http://localhost:3000", // Example: Your local development
+  "http://localhost:3001", // Example: Your local development
+];
+
 // Enable CORS
 const corsOptions = {
   credentials: true, // Allow credentials (cookies, authorization headers, etc)
@@ -13,6 +21,15 @@ const corsOptions = {
       return;
     }
 
+    console.log("CORS Origin:", origin);
+
+    // In development, allow all origins
+    if (process.env.IS_DEVELOPMENT === "true") {
+      callback(null, true);
+      return;
+    }
+
+    // In production, check against allowed origins
     if (!allowedOrigins.includes(origin)) {
       const msg =
         "The CORS policy for this site does not allow access from the specified Origin.";
@@ -25,14 +42,4 @@ const corsOptions = {
 };
 
 export const corsConfig = cors(corsOptions);
-
-// Configure allowed origins
-export const allowedOrigins = [
-  "http://localhost:5173", // Example: Your local frontend
-  "http://localhost:5174", // Example: Your local frontend
-  "http://localhost:3000", // Example: Your local development
-  "http://localhost:3001", // Example: Your local development
-  // Add more origins as needed
-  "https://yahyobek.com",
-  "https://blog.yahyobek.com",
-];
+export { allowedOrigins };

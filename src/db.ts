@@ -1,13 +1,18 @@
-import mongoose from "mongoose";
-import { MONGO_URI } from "./config/config.js";
+import pkg from "pg";
+import {
+  DB_HOST,
+  DB_PORT,
+  DB_USER,
+  DB_PASSWORD,
+  DB_NAME,
+} from "./config/config.js";
 
-export const connectDB = async () => {
-  try {
-    const conn = await mongoose.connect(MONGO_URI ?? "");
-    console.log(`MongoDB Connected: ${conn.connection.host}`);
-  } catch (err) {
-    console.error(`Error connecting to MongoDB: ${err}`);
-    // Exit the process with a failure code if we can't connect.
-    process.exit(1);
-  }
-};
+const { Pool } = pkg;
+
+export const pool = new Pool({
+  host: DB_HOST,
+  port: DB_PORT ? parseInt(DB_PORT, 10) : 5432,
+  user: DB_USER,
+  password: DB_PASSWORD,
+  database: DB_NAME,
+});
