@@ -67,7 +67,9 @@ describe("userController", () => {
       mockReq.body = { username: "newuser", password: "pass" };
       vi.spyOn(prisma.users, "findUnique").mockResolvedValueOnce(null);
       vi.spyOn(bcryptjs, "hash").mockResolvedValueOnce("hashed" as any);
-      vi.spyOn(prisma.users, "create").mockResolvedValueOnce({ id: 2 } as any);
+      vi.spyOn(prisma.users, "create").mockResolvedValueOnce({
+        id: 2,
+      } as any);
 
       await userController.createUser(mockReq as Request, mockRes as Response);
       expect(mockRes.status).toHaveBeenCalledWith(201);
@@ -93,7 +95,9 @@ describe("userController", () => {
         id: 1,
       } as any);
       vi.spyOn(bcryptjs, "hash").mockResolvedValueOnce("hashed" as any);
-      vi.spyOn(prisma.users, "update").mockResolvedValueOnce({ id: 1 } as any);
+      vi.spyOn(prisma.users, "update").mockResolvedValueOnce({
+        id: 1,
+      } as any);
 
       await userController.updateUserPassword(
         mockReq as Request,
