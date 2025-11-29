@@ -3,8 +3,10 @@ import express from "express";
 import rateLimit from "express-rate-limit";
 import helmet from "helmet";
 import morgan from "morgan";
-// import userRoutes from "./modules/users/user.routes.js";
+import userRoutes from "./routes/users.js";
+import dashboardRoutes from "./routes/dashboard.js";
 import { corsConfig } from "./middlewares/cors.js";
+import { verifyJWT } from "./middlewares/auth.js";
 // import { errorHandler } from "./middlewares/error-handler.js";
 
 const app = express();
@@ -25,34 +27,18 @@ app.use(rateLimit({ windowMs: 15 * 60 * 1000, max: 1000 }));
 // Logging
 app.use(morgan("dev"));
 
+// JWT verification middleware
+app.use(verifyJWT);
+
 // Routes
-// app.use("/auth", userRoutes);
+app.use("/auth", userRoutes);
+app.use("/dashboard", dashboardRoutes);
 
 app.get("/", (req, res) => {
-  res.render("index", { title: "Home Page" });
-});
-
-app.get("/signin", (req, res) => {
-  res.render("signin", { error: null });
-});
-
-app.post("/signin", (req, res) => {
-  const { username, password } = req.body;
-
-  // TODO: Add authentication logic here
-  // For now, just log the credentials
-  console.log("Sign-in attempt:", { username, password });
-
-  // Example: If credentials are empty, show error
-  if (!username || !password) {
-    return res.render("signin", {
-      error: "Username and password are required",
-    });
+  if (!req.user) {
+    return res.redirect("/auth/signin");
   }
-
-  // TODO: Validate credentials against database
-  // res.redirect("/dashboard");
-  res.render("signin", { error: "Invalid credentials" });
+  return res.redirect("/dashboard");
 });
 
 // app.use(errorHandler);
