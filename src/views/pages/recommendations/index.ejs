@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <title>Recommendations</title>
+    <%- include('../../css/base.ejs') %> <%-
+    include('../../css/recommendations.ejs') %>
+  </head>
+  <body>
+    <%- include('../../components/navbar.ejs') %>
+
+    <div class="container">
+      <%- include('../../components/sidebar.ejs', { currentPage:
+      'recommendations', isAdmin }) %>
+
+      <div class="main-content">
+        <div class="page-header">
+          <div class="page-title">
+            <h2>Recommended Startups</h2>
+            <p>
+              AI-powered startup recommendations based on interests
+            </p>
+          </div>
+        </div>
+
+        <div class="recommendations-container">
+          <div class="filters">
+            <input
+              type="text"
+              id="delegateFilter"
+              placeholder="Filter by delegate name..."
+              class="search-input"
+            />
+          </div>
+
+          <div id="recommendationsGrid" class="recommendations-grid">
+            <!-- Recommendations will be loaded here -->
+          </div>
+
+          <div id="noRecommendations" class="empty-state">
+            <p>No recommendations available yet.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="/js/recommendations.js"></script>
+  </body>
+</html>

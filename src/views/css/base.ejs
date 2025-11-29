@@ -93,6 +93,26 @@
     padding: 2rem;
   }
 
+  .page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid #e0e0e0;
+  }
+
+  .page-title h2 {
+    font-size: 1.8rem;
+    color: #333;
+    margin-bottom: 0.25rem;
+  }
+
+  .page-title p {
+    color: #666;
+    font-size: 0.95rem;
+  }
+
   .btn {
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     color: white;
@@ -110,6 +130,11 @@
     transform: translateY(-2px);
   }
 
+  .btn-primary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+  }
+
   .card {
     background: white;
     border-radius: 10px;
@@ -123,5 +148,39 @@
     margin-bottom: 1.5rem;
     font-size: 20px;
     font-weight: 600;
+  }
+
+  @media (max-width: 768px) {
+    .container {
+      flex-direction: column;
+    }
+
+    .sidebar {
+      width: 100%;
+      display: flex;
+      padding: 0;
+      height: auto;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    }
+
+    .sidebar-item {
+      padding: 1rem;
+      border-left: none;
+      border-bottom: 4px solid transparent;
+      flex: 1;
+      text-align: center;
+    }
+
+    .sidebar-item:hover,
+    .sidebar-item.active {
+      border-left: none;
+      border-bottom-color: #667eea;
+    }
+
+    .page-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1rem;
+    }
   }
 </style>

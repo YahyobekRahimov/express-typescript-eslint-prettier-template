@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <title>Delegates</title>
+    <%- include('../../css/base.ejs') %> <%-
+    include('../../css/delegates.ejs') %>
+  </head>
+  <body>
+    <%- include('../../components/navbar.ejs') %>
+
+    <div class="container">
+      <%- include('../../components/sidebar.ejs', { currentPage:
+      'delegates', isAdmin }) %>
+
+      <div class="main-content">
+        <div class="page-header">
+          <div class="page-title">
+            <h2>Conference Delegates</h2>
+            <p>Manage and track all conference attendees</p>
+          </div>
+          <% if (isAdmin) { %>
+          <button id="openModalBtn" class="btn btn-primary">
+            + Add Delegate
+          </button>
+          <% } %>
+        </div>
+
+        <div class="delegates-container">
+          <div class="search-bar">
+            <input
+              type="text"
+              id="searchInput"
+              placeholder="Search by name, email, or badge ID..."
+              class="search-input"
+            />
+          </div>
+
+          <div id="delegatesGrid" class="delegates-grid">
+            <!-- Delegates cards will be loaded here -->
+          </div>
+
+          <div id="noDelegates" class="empty-state">
+            <p>
+              No delegates found. Add your first delegate to get
+              started!
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Add Delegate Modal -->
+    <div id="addDelegateModal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Add New Delegate</h2>
+        <form id="addDelegateForm">
+          <div class="form-group">
+            <label for="badge_id">Badge ID</label>
+            <input
+              type="text"
+              id="badge_id"
+              name="badge_id"
+              required
+              placeholder="Enter badge ID"
+            />
+          </div>
+          <div class="form-group">
+            <label for="name">Full Name</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              required
+              placeholder="Enter full name"
+            />
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              required
+              placeholder="Enter email"
+            />
+          </div>
+          <div class="form-group">
+            <label for="job_title">Job Title</label>
+            <input
+              type="text"
+              id="job_title"
+              name="job_title"
+              placeholder="Enter job title"
+            />
+          </div>
+          <div class="form-group">
+            <label for="company_name">Company Name</label>
+            <input
+              type="text"
+              id="company_name"
+              name="company_name"
+              placeholder="Enter company name"
+            />
+          </div>
+          <div class="form-buttons">
+            <button type="submit" class="btn-submit">
+              Add Delegate
+            </button>
+            <button
+              type="button"
+              class="btn-cancel"
+              id="closeModalBtn"
+            >
+              Cancel
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Edit Delegate Drawer -->
+    <div id="editDelegateDrawer" class="drawer">
+      <div class="drawer-content">
+        <div class="drawer-header">
+          <h2>Edit Delegate</h2>
+          <span class="drawer-close">&times;</span>
+        </div>
+        <form id="editDelegateForm">
+          <div class="form-group">
+            <label for="editName">Full Name</label>
+            <input
+              type="text"
+              id="editName"
+              name="name"
+              required
+              placeholder="Enter full name"
+            />
+          </div>
+          <div class="form-group">
+            <label for="editEmail">Email</label>
+            <input
+              type="email"
+              id="editEmail"
+              name="email"
+              placeholder="Enter email"
+            />
+          </div>
+          <div class="form-group">
+            <label for="editJobTitle">Job Title</label>
+            <input
+              type="text"
+              id="editJobTitle"
+              name="job_title"
+              placeholder="Enter job title"
+            />
+          </div>
+          <div class="form-group">
+            <label for="editCompanyName">Company Name</label>
+            <input
+              type="text"
+              id="editCompanyName"
+              name="company_name"
+              placeholder="Enter company name"
+            />
+          </div>
+          <div class="form-buttons">
+            <button type="submit" class="btn-submit">
+              Update Delegate
+            </button>
+            <button
+              type="button"
+              class="btn-cancel"
+              id="closeDrawerBtn"
+            >
+              Cancel
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div id="drawerOverlay" class="drawer-overlay"></div>
+
+    <script src="/js/delegates.js"></script>
+  </body>
+</html>

@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <title>Startups</title>
+    <%- include('../../css/base.ejs') %> <%-
+    include('../../css/startups.ejs') %>
+  </head>
+  <body>
+    <%- include('../../components/navbar.ejs') %>
+
+    <div class="container">
+      <%- include('../../components/sidebar.ejs', { currentPage:
+      'startups', isAdmin }) %>
+
+      <div class="main-content">
+        <div class="page-header">
+          <div class="page-title">
+            <h2>Startup Exhibitors</h2>
+            <p>Browse and manage participating startups</p>
+          </div>
+          <% if (isAdmin) { %>
+          <button id="openModalBtn" class="btn btn-primary">
+            + Add Startup
+          </button>
+          <% } %>
+        </div>
+
+        <div class="startups-container">
+          <div class="search-bar">
+            <input
+              type="text"
+              id="searchInput"
+              placeholder="Search startups..."
+              class="search-input"
+            />
+          </div>
+
+          <div id="startupsGrid" class="startups-grid">
+            <!-- Startups cards will be loaded here -->
+          </div>
+
+          <div id="noStartups" class="empty-state">
+            <p>
+              No startups found. Add your first startup to get
+              started!
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Add Startup Modal -->
+    <div id="addStartupModal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Add New Startup</h2>
+        <form id="addStartupForm">
+          <div class="form-group">
+            <label for="startup_name">Startup Name</label>
+            <input
+              type="text"
+              id="startup_name"
+              name="name"
+              required
+              placeholder="Enter startup name"
+            />
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="Enter email"
+            />
+          </div>
+          <div class="form-group">
+            <label for="industry">Industry</label>
+            <input
+              type="text"
+              id="industry"
+              name="industry"
+              placeholder="Enter industry"
+            />
+          </div>
+          <div class="form-group">
+            <label for="booth_number">Booth Number</label>
+            <input
+              type="text"
+              id="booth_number"
+              name="booth_number"
+              placeholder="Enter booth number"
+            />
+          </div>
+          <div class="form-group">
+            <label for="description">Description</label>
+            <textarea
+              id="description"
+              name="description"
+              placeholder="Enter startup description"
+              rows="4"
+            ></textarea>
+          </div>
+          <div class="form-buttons">
+            <button type="submit" class="btn-submit">
+              Add Startup
+            </button>
+            <button
+              type="button"
+              class="btn-cancel"
+              id="closeModalBtn"
+            >
+              Cancel
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Edit Startup Drawer -->
+    <div id="editStartupDrawer" class="drawer">
+      <div class="drawer-content">
+        <div class="drawer-header">
+          <h2>Edit Startup</h2>
+          <span class="drawer-close">&times;</span>
+        </div>
+        <form id="editStartupForm">
+          <div class="form-group">
+            <label for="editName">Startup Name</label>
+            <input
+              type="text"
+              id="editName"
+              name="name"
+              required
+              placeholder="Enter startup name"
+            />
+          </div>
+          <div class="form-group">
+            <label for="editEmail">Email</label>
+            <input
+              type="email"
+              id="editEmail"
+              name="email"
+              placeholder="Enter email"
+            />
+          </div>
+          <div class="form-group">
+            <label for="editIndustry">Industry</label>
+            <input
+              type="text"
+              id="editIndustry"
+              name="industry"
+              placeholder="Enter industry"
+            />
+          </div>
+          <div class="form-group">
+            <label for="editBoothNumber">Booth Number</label>
+            <input
+              type="text"
+              id="editBoothNumber"
+              name="booth_number"
+              placeholder="Enter booth number"
+            />
+          </div>
+          <div class="form-group">
+            <label for="editDescription">Description</label>
+            <textarea
+              id="editDescription"
+              name="description"
+              placeholder="Enter startup description"
+              rows="4"
+            ></textarea>
+          </div>
+          <div class="form-buttons">
+            <button type="submit" class="btn-submit">
+              Update Startup
+            </button>
+            <button
+              type="button"
+              class="btn-cancel"
+              id="closeDrawerBtn"
+            >
+              Cancel
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div id="drawerOverlay" class="drawer-overlay"></div>
+
+    <script src="/js/startups.js"></script>
+  </body>
+</html>

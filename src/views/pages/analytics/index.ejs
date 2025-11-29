@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <title>Analytics</title>
+    <%- include('../../css/base.ejs') %> <%-
+    include('../../css/analytics.ejs') %>
+  </head>
+  <body>
+    <%- include('../../components/navbar.ejs') %>
+
+    <div class="container">
+      <%- include('../../components/sidebar.ejs', { currentPage:
+      'analytics', isAdmin }) %>
+
+      <div class="main-content">
+        <div class="page-header">
+          <div class="page-title">
+            <h2>Analytics & Insights</h2>
+            <p>Conference metrics and performance tracking</p>
+          </div>
+        </div>
+
+        <div class="analytics-container">
+          <div id="statsGrid" class="stats-grid">
+            <!-- Stats cards will be loaded here -->
+          </div>
+
+          <div class="analytics-section">
+            <h3>Top Startups by Visits</h3>
+            <div id="topStartupsContainer" class="startup-list">
+              <!-- Top startups will be loaded here -->
+            </div>
+          </div>
+
+          <div class="analytics-section">
+            <h3>Delegate Analytics</h3>
+            <div class="delegate-search">
+              <input
+                type="text"
+                id="delegateSearch"
+                placeholder="Search delegate by name or ID..."
+                class="search-input"
+              />
+            </div>
+            <div id="delegateAnalyticsContainer">
+              <!-- Delegate analytics will be loaded here -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="/js/analytics.js"></script>
+  </body>
+</html>

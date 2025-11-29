@@ -11,7 +11,29 @@
     >User Management</a
   >
   <% } %>
-  <!-- TODO: Add more staff pages -->
-  <!-- <a href="/dashboard/page1" class="sidebar-item">Page 1</a> -->
-  <!-- <a href="/dashboard/page2" class="sidebar-item">Page 2</a> -->
+  <a
+    href="/dashboard/delegates"
+    class="sidebar-item <% if (currentPage === 'delegates') { %>active<% } %>"
+    >Delegates</a
+  >
+  <a
+    href="/dashboard/startups"
+    class="sidebar-item <% if (currentPage === 'startups') { %>active<% } %>"
+    >Startups</a
+  >
+  <a
+    href="/dashboard/recommendations"
+    class="sidebar-item <% if (currentPage === 'recommendations') { %>active<% } %>"
+    >Recommendations</a
+  >
+  <a
+    href="/dashboard/scan-logs"
+    class="sidebar-item <% if (currentPage === 'scan-logs') { %>active<% } %>"
+    >Scan Logs</a
+  >
+  <a
+    href="/dashboard/analytics"
+    class="sidebar-item <% if (currentPage === 'analytics') { %>active<% } %>"
+    >Analytics</a
+  >
 </div>

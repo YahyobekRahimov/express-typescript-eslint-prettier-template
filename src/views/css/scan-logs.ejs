@@ -1,0 +1,167 @@
+<style>
+  /* Scan Logs Page Styles */
+
+  .scan-logs-container {
+    padding: 2rem;
+  }
+
+  .filters-section {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .search-input {
+    flex: 1;
+    min-width: 250px;
+    padding: 0.75rem 1rem;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    transition: border-color 0.3s;
+  }
+
+  .search-input:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+  }
+
+  .filter-select {
+    padding: 0.75rem 1rem;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    background: white;
+    cursor: pointer;
+    transition: border-color 0.3s;
+  }
+
+  .filter-select:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+  }
+
+  .logs-table-wrapper {
+    background: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .logs-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  .logs-table thead {
+    background: #f9f9f9;
+    border-bottom: 2px solid #e0e0e0;
+  }
+
+  .logs-table th {
+    padding: 1rem;
+    text-align: left;
+    font-weight: 600;
+    color: #333;
+    font-size: 0.9rem;
+  }
+
+  .logs-table tbody tr {
+    border-bottom: 1px solid #f0f0f0;
+    transition: background-color 0.2s;
+  }
+
+  .logs-table tbody tr:hover {
+    background-color: #f9f9f9;
+  }
+
+  .logs-table td {
+    padding: 1rem;
+    color: #666;
+    font-size: 0.9rem;
+  }
+
+  .timestamp {
+    color: #999;
+    font-size: 0.85rem;
+    white-space: nowrap;
+  }
+
+  .delegate-name {
+    font-weight: 500;
+    color: #333;
+  }
+
+  .startup-name {
+    font-weight: 500;
+    color: #333;
+  }
+
+  .scanner-name {
+    color: #666;
+  }
+
+  .scan-type {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+
+  .type-delegate {
+    background: #e0e7ff;
+    color: #667eea;
+  }
+
+  .type-startup {
+    background: #fce7f3;
+    color: #be185d;
+  }
+
+  .type-badge {
+    background: #fef3c7;
+    color: #b45309;
+  }
+
+  .empty-state {
+    text-align: center;
+    padding: 3rem 2rem;
+    color: #999;
+    background: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+  }
+
+  .empty-state p {
+    font-size: 1rem;
+    margin: 0;
+  }
+
+  @media (max-width: 768px) {
+    .filters-section {
+      flex-direction: column;
+    }
+
+    .search-input {
+      min-width: 100%;
+    }
+
+    .logs-table {
+      font-size: 0.85rem;
+    }
+
+    .logs-table th,
+    .logs-table td {
+      padding: 0.75rem;
+    }
+
+    .logs-table-wrapper {
+      overflow-x: auto;
+    }
+  }
+</style>
